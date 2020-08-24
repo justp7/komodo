@@ -1,0 +1,8 @@
+prefix=/home/komodo/devel
+
+Name: komodo2_controllers
+Description: Description of komodo2_controllers
+Version: 0.0.0
+Cflags: -I/home/komodo/src/komodo2_controllers/include
+Libs: -L${prefix}/lib -lkomodo2_controllers
+Requires: cmake_modules control_msgs controller_interface hardware_interface realtime_tools

@@ -1,0 +1,8 @@
+prefix=/home/komodo/devel
+
+Name: komodo2_teleop
+Description: Description of komodo2_teleop
+Version: 0.0.0
+Cflags: -I/home/komodo/src/komodo2_teleop/include
+Libs: -L${prefix}/lib 
+Requires: joy roscpp actionlib

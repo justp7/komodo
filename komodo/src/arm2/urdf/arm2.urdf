@@ -1,0 +1,155 @@
+<?xml version="1.0"?>
+<robot name="arm2" xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <link
+    name="base">
+    <inertial>
+      <origin
+        xyz="-8.9512E-17 0.080906 0.065805"
+        rpy="0 0 0" />
+      <mass
+        value="1.6502" />
+      <inertia
+        ixx="0"
+        ixy="0"
+        ixz="0"
+        iyy="0"
+        iyz="0"
+        izz="0" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://arm2/meshes/base.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.89804 0.91765 0.92941 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://arm2/meshes/base.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <link
+    name="arm">
+    <inertial>
+      <origin
+        xyz="2.1756E-15 0.38607 -0.022642"
+        rpy="0 0 0" />
+      <mass
+        value="1.6541" />
+      <inertia
+        ixx="0.020029"
+        ixy="-3.1779E-16"
+        ixz="1.6265E-16"
+        iyy="0.0233"
+        iyz="0.0034648"
+        izz="0.041275" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://arm2/meshes/arm.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://arm2/meshes/arm.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="arm_joint"
+    type="revolute">
+    <origin
+      xyz="0 0.068765 0.18244"
+      rpy="-0.0065548 8.1987E-19 1.4009E-16" />
+    <parent
+      link="base" />
+    <child
+      link="arm" />
+    <axis
+      xyz="-1 0 0" />
+    <limit
+      effort="1000"
+      velocity="10" />
+  </joint>
+  <link
+    name="bucket">
+    <inertial>
+      <origin
+        xyz="-1.7467E-14 0.081094 -0.0092968"
+        rpy="0 0 0" />
+      <mass
+        value="0.74403" />
+      <inertia
+        ixx="0.00060709"
+        ixy="1.575E-16"
+        ixz="4.731E-16"
+        iyy="0.0060723"
+        iyz="-4.2694E-06"
+        izz="0.0066375" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://arm2/meshes/bucket.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://arm2/meshes/bucket.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="bucket_joint"
+    type="revolute">
+    <origin
+      xyz="0 0.63123 -0.22318"
+      rpy="0.0093956 -2.6528E-16 1.0777E-16" />
+    <parent
+      link="arm" />
+    <child
+      link="bucket" />
+    <axis
+      xyz="-1 0 0" />
+    <limit
+      effort="1000"
+      velocity="10" />
+  </joint>
+</robot>

@@ -1,0 +1,233 @@
+<?xml version="1.0"?>
+<robot name="arm2" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+<!-- properties -->
+  <property name="cyl_radius" value="0.0475" /> 
+  <property name="cyl_height" value="0.12" />
+  <property name="cyl_mass" value="0.125" /> <!-- in kg, meter -->
+  <property name="rev_axisY" value="0 1 0" />
+  <property name="rev_axisZ" value="0 0 1" />
+  <property name="deg_to_rad" value="0.01745329251994329577"/>
+
+  <material name="blue">
+    <color rgba="0 0 0.8 1"/>
+  </material>
+  <material name="black">
+    <color rgba="0 0 0 1"/>
+  </material>
+  <material name="white">
+    <color rgba="1 1 1 1"/>
+  </material>
+    <material name="red">
+    <color rgba="1 0 0 1"/>
+  </material>
+
+  <xacro:macro name="transmission_arm" params="joint_name">
+	  <transmission name="tran1">
+	    <type>transmission_interface/SimpleTransmission</type>
+	    <joint name="${joint_name}_joint">
+	      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+	    </joint>
+	    <actuator name="${joint_name}_motor">
+	      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+	      <mechanicalReduction>1</mechanicalReduction>
+	    </actuator>
+	  </transmission>
+   </xacro:macro>
+
+
+<link name="base_link" >
+      <visual>
+      <geometry>
+        <box size="0.3 0.3 0.3"/>
+      </geometry>
+      <material name="black"/>
+    </visual>
+    <collision>
+      <geometry>
+        <box size="0.3 0.3 0.3"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="100000" />
+      <inertia ixx="100000" ixy="0.0" ixz="0.0" iyy="100000" iyz="0.0" izz="100000"/>
+   </inertial>
+  </link>
+
+
+  <link
+    name="base_arm">
+    <inertial>
+      <origin
+        xyz="-8.9512E-17 0.080906 0.065805"
+        rpy="0 0 0" />
+      <mass
+        value="1.6502" />
+      <inertia
+        ixx="0.5"
+        ixy="0"
+        ixz="0"
+        iyy="0.5"
+        iyz="0"
+        izz="0.5" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://arm2/meshes/base_arm.STL" />
+      </geometry>
+      <material name="blue"/>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://arm2/meshes/base_arm.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+
+  <link
+    name="arm">
+    <inertial>
+      <origin
+        xyz="2.1756E-15 0.38607 -0.022642"
+        rpy="0 0 0" />
+      <mass
+        value="1.6541" />
+      <inertia
+        ixx="0.020029"
+        ixy="-3.1779E-16"
+        ixz="1.6265E-16"
+        iyy="0.0233"
+        iyz="0.0034648"
+        izz="0.041275" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://arm2/meshes/arm.STL" />
+      </geometry>
+      <material name="white"/>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://arm2/meshes/arm.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <link
+    name="bucket">
+    <inertial>
+      <origin
+        xyz="-1.7467E-14 0.081094 -0.0092968"
+        rpy="0 0 0" />
+      <mass
+        value="0.74403" />
+      <inertia
+        ixx="0.00060709"
+        ixy="1.575E-16"
+        ixz="4.731E-16"
+        iyy="0.0060723"
+        iyz="-4.2694E-06"
+        izz="0.0066375" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://arm2/meshes/bucket.STL" />
+      </geometry>
+      <material name="red"/>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://arm2/meshes/bucket.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+
+  <joint name="fix" type="fixed">
+    <parent link="base_link"/>
+    <child link="base_arm"/>
+    <origin xyz="0 -0.2 0.16" rpy="0 0 0" />
+  </joint>
+
+
+  <joint
+    name="arm_joint"
+    type="revolute">
+    <origin
+      xyz="0 0.068765 0.18244"
+      rpy="-0.0065548 8.1987E-19 1.4009E-16" />
+    <parent
+      link="base_arm" />
+    <child
+      link="arm" />
+    <axis
+      xyz="-1 0 0" />
+    <limit effort="1000.0" lower="-0.5" upper="0.548" velocity="0.5"/>
+  </joint>
+
+
+  <joint
+    name="bucket_joint"
+    type="revolute">
+    <origin
+      xyz="0 0.63123 -0.22318"
+      rpy="0.0093956 -2.6528E-16 1.0777E-16" />
+    <parent
+      link="arm" />
+    <child
+      link="bucket" />
+    <axis
+      xyz="-1 0 0" />
+    <limit effort="1000.0" lower="-0.5" upper="0.548" velocity="0.5"/>
+  </joint>
+
+
+<gazebo reference="base_arm">
+<material>Gazebo/Black</material>
+</gazebo>
+<gazebo reference="arm">
+<material>Gazebo/White</material>
+</gazebo>
+<gazebo reference="bucket">
+<material>Gazebo/Blue</material>
+</gazebo>
+
+  <!-- Transmissions for ROS Control -->
+
+   <xacro:transmission_arm joint_name="arm"/>
+   <xacro:transmission_arm joint_name="bucket"/>
+
+  <!-- ros_control plugin -->
+  <gazebo>
+    <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+      <robotNamespace>/arm2</robotNamespace>
+    </plugin>
+  </gazebo>
+
+</robot>

@@ -2,8 +2,8 @@
 #ifndef ARMADILLO2_HW_RICBOARD_PUB_H
 #define ARMADILLO2_HW_RICBOARD_PUB_H
 
-#include <ric_interface/ric_interface.h>
-#include <ric_interface/ric_exception.h>
+// #include <ric_interface/ric_interface.h>
+// #include <ric_interface/ric_exception.h>
 #include <ros/ros.h>
 #include <tf/tf.h>
 #include <sensor_msgs/Range.h>
@@ -51,7 +51,7 @@ private:
     ros::Timer ric_pub_timer_,
                ric_dead_timer_;
 
-    ric::RicInterface ric_;
+    // ric::RicInterface ric_;
     ros::NodeHandle *nh_;
     boost::thread* t;
 

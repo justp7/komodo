@@ -1,4 +1,5 @@
 # !/usr/bin/env python
+# coding: utf-8
 
 import rospy
 import numpy as np
@@ -6,7 +7,7 @@ import numpy as np
 from gazebo_msgs.srv import SpawnModel, SpawnModelRequest, SpawnModelResponse
 from copy import deepcopy
 from tf.transformations import quaternion_from_euler
-
+# 立方体模型的SDF格式定义
 sdf_cube = """<?xml version="1.0" ?>
 <sdf version="1.4">
   <model name="MODELNAME">
@@ -73,6 +74,7 @@ sdf_cube = """<?xml version="1.0" ?>
   </model>
 </sdf>
 """
+# 沙粒模型的SDF格式定义
 sdf_sand = """<?xml version='1.0'?>
 <sdf version='1.6'>
     <model name="MODELNAME">
@@ -173,13 +175,61 @@ sdf_sand = """<?xml version='1.0'?>
     </model>
 </sdf>
 """
+
+# 沙盒模型的SDF格式定义
+# sdf_sand_box = """<sdf version='1.6'>
+#   <model name='sand_box_osher'>
+#     <link name='sand_box_osher'>
+#       <pose frame=''>0 0 0 0 -0 0</pose>
+#       <inertial>
+#         <pose frame=''>-0.35285 -0.305 0.11027 0 -0 0</pose>
+#         <mass>2000.892</mass>
+#         <inertia>
+#           <ixx>130.2204</ixx>
+#           <ixy>-220.5538e-15</ixy>
+#           <ixz>-4.85191</ixz>
+#           <iyy>276.363</iyy>
+#           <iyz>-77.9029e-15</iyz>
+#           <izz>135.62</izz>
+#         </inertia>
+#       </inertial>
+#       <collision name='sand_box_osher_collision'>
+#         <pose frame=''>0 0 0 1.5708 -0 0</pose>
+#         <geometry>
+#           <mesh>
+#             <scale>1 0.8 1</scale>
+#             <uri>package://arm2/meshes/sand_box_osher.STL</uri>
+#           </mesh>
+#         </geometry>
+#       </collision>
+#       <visual name='sand_box_osher_visual'>
+#         <pose frame=''>0 0 0 1.5708 -0 0</pose>
+#         <geometry>
+#           <mesh>
+#             <scale>1 0.8 1</scale>
+#             <uri>model://sand_box_osher/sand_box_osher.STL</uri>
+#           </mesh>
+#         </geometry>
+#           <material>
+#           <ambient>0.3 0.25 0.1 1</ambient>
+#           <diffuse>0.7 0.6 0.4 1</diffuse>
+#           <specular>0.01 0.005 0.001 1</specular>
+#           <emissive>0 0 0 1</emissive>
+#   </material>
+#   	<transparency>0.5</transparency>
+
+#       </visual>
+#     </link>
+#   </model>
+# </sdf>
+# """
 sdf_sand_box = """<sdf version='1.6'>
   <model name='sand_box_osher'>
     <link name='sand_box_osher'>
-      <pose frame=''>0 0 0 0 -0 0</pose>
+      <pose frame=''>-0.2 -0.25 0 0 0 1.54</pose>
       <inertial>
-        <pose frame=''>-0.35285 -0.305 0.11027 0 -0 0</pose>
-        <mass>2000.892</mass>
+        <pose frame=''>0 0 0 0 0 0</pose>
+        <mass>2000</mass>
         <inertia>
           <ixx>130.2204</ixx>
           <ixy>-220.5538e-15</ixy>
@@ -190,27 +240,27 @@ sdf_sand_box = """<sdf version='1.6'>
         </inertia>
       </inertial>
       <collision name='sand_box_osher_collision'>
-        <pose frame=''>0 0 0 1.5708 -0 0</pose>
+        <pose frame=''>0 0 0 0 0 0</pose>
         <geometry>
           <mesh>
             <scale>1 0.8 1</scale>
-            <uri>model://sand_box_osher/meshes/sand_box_osher.STL</uri>
+            <uri>file:///home/komodo/src/arm2/meshes/sand_box_osher.STL</uri>
           </mesh>
         </geometry>
       </collision>
       <visual name='sand_box_osher_visual'>
-        <pose frame=''>0 0 0 1.5708 -0 0</pose>
+        <pose frame=''>0 0 0 0 -0 0</pose>
         <geometry>
           <mesh>
             <scale>1 0.8 1</scale>
-            <uri>model://sand_box_osher/meshes/sand_box_osher.STL</uri>
+            <uri>file:///home/komodo/src/arm2/meshes/sand_box_osher.STL</uri>
           </mesh>
         </geometry>
           <material>
-                    <ambient>0.3 0.25 0.1 1</ambient>
-                    <diffuse>0.7 0.6 0.4 1</diffuse>
-                    <specular>0.01 0.005 0.001 1</specular>
-                    <emissive>0 0 0 1</emissive>
+          <ambient>0.3 0.25 0.1 1</ambient>
+          <diffuse>0.7 0.6 0.4 1</diffuse>
+          <specular>0.01 0.005 0.001 1</specular>
+          <emissive>0 0 0 1</emissive>
   </material>
   	<transparency>0.5</transparency>
 
@@ -219,6 +269,11 @@ sdf_sand_box = """<sdf version='1.6'>
   </model>
 </sdf>
 """
+
+# <uri>model://arm2/meshes/sand_box_osher.STL</uri>
+# <uri>file:///home/komodo/src/arm2/meshes/sand_box_osher.STL</uri>
+
+# 球体模型的SDF格式定义
 sdf_unit_sphere = """<?xml version='1.0'?>
 <sdf version='1.6'>
   <model name="MODELNAME">
@@ -320,6 +375,7 @@ sdf_unit_sphere = """<?xml version='1.0'?>
   </model>
 </sdf>
 """
+# 另一种沙粒模型的SDF格式定义
 sdf_sand2 = """<?xml version='1.0'?>
 <sdf version='1.6'>
     <model name="MODELNAME">
@@ -440,6 +496,16 @@ class Spawner:
         px py pz: position of the cube (and it's collision cube)
         rr rp ry: rotation (roll, pitch, yaw) of the model
         sx sy sz: size of the cube"""
+        """
+        创建一个沙粒立方体模型的请求
+        参数:
+            modelname: 在Gazebo中模型的名称
+            px, py, pz: 模型的位置坐标
+            rr, rp, ry: 模型的旋转角度(roll, pitch, yaw)
+            sx, sy, sz: 模型的尺寸
+        返回:
+            SpawnModelRequest对象，用于向Gazebo服务发送请求
+        """
         cube = deepcopy(sdf_sand2)
         # Replace size of model
         size_str = str(round(sx, 3)) + " " + \
@@ -469,6 +535,16 @@ class Spawner:
         px py pz: position of the cube (and it's collision cube)
         rr rp ry: rotation (roll, pitch, yaw) of the model
         sx sy sz: size of the cube"""
+        """
+        创建一个球体模型的请求
+        参数:
+            modelname: 在Gazebo中模型的名称
+            px, py, pz: 模型的位置坐标
+            rr, rp, ry: 模型的旋转角度(roll, pitch, yaw)
+            r: 球体的半径
+        返回:
+            SpawnModelRequest对象，用于向Gazebo服务发送请求
+        """
         cube = deepcopy(sdf_unit_sphere)
         # Replace size of model
         cube = cube.replace('RADIUS', str(r))
@@ -495,6 +571,15 @@ class Spawner:
         modelname: name of the model for gazebo
         px py pz: position of the cube (and it's collision cube)
         rr rp ry: rotation (roll, pitch, yaw) of the model"""
+        """
+        创建一个沙盒模型的请求
+        参数:
+            modelname: 在Gazebo中模型的名称
+            px, py, pz: 模型的位置坐标
+            rr, rp, ry: 模型的旋转角度(roll, pitch, yaw)
+        返回:
+            SpawnModelRequest对象，用于向Gazebo服务发送请求
+        """
         cube = deepcopy(sdf_sand_box)
 
         req = SpawnModelRequest()

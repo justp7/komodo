@@ -10,7 +10,7 @@ find_package(
     rospy
     controller_manager
     bms_interface
-    ric_interface
+    # ric_interface
     roboteq_control
 )
 
@@ -20,7 +20,7 @@ catkin_package(
   CATKIN_DEPENDS
         bms_interface
         roboteq_control
-        ric_interface
+        # ric_interface
 DEPENDS
     Boost
 #  DEPENDS system_lib

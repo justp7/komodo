@@ -1,8 +1,0 @@
-prefix=/home/komodo/devel
-
-Name: komodo2_perception
-Description: Description of komodo2_perception
-Version: 0.0.0
-Cflags: -I/home/komodo/devel/include
-Libs: -L${prefix}/lib 
-Requires: message_runtime

@@ -5,18 +5,18 @@ project(komodo2_controllers)
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
-        angles
-        cmake_modules
-        roscpp
-        urdf
-        control_toolbox
-        controller_interface
-        hardware_interface
-        realtime_tools
-        control_msgs
-        controller_manager
-        xacro
-        )
+    angles
+    cmake_modules
+    roscpp
+    urdf
+    control_toolbox
+    controller_interface
+    hardware_interface
+    realtime_tools
+    control_msgs
+    controller_manager
+    xacro
+    )
 
 ## System dependencies are found with CMake's conventions
 find_package(Boost REQUIRED COMPONENTS system)
@@ -108,37 +108,37 @@ find_package(Boost REQUIRED COMPONENTS system)
 ## CATKIN_DEPENDS: catkin_packages dependent projects also need
 ## DEPENDS: system dependencies of this project that dependent projects also need
 catkin_package(
-        INCLUDE_DIRS include
-        LIBRARIES komodo2_controllers
-        CATKIN_DEPENDS cmake_modules control_msgs controller_interface hardware_interface realtime_tools
+    INCLUDE_DIRS include
+    LIBRARIES komodo2_controllers
+    CATKIN_DEPENDS cmake_modules control_msgs controller_interface hardware_interface realtime_tools
 )
 
 ###########
 ## Build ##
 ###########
 set(
-        LIB_FILES
-        src/${PROJECT_NAME}/robot.cpp
-        include/${PROJECT_NAME}/diff_drive_controller.h
-        src/${PROJECT_NAME}/diff_drive_controller.cpp
-        include/${PROJECT_NAME}/odometry.h
-        src/${PROJECT_NAME}/odometry.cpp
-        include/${PROJECT_NAME}/speed_limiter.h
-        src/${PROJECT_NAME}/speed_limiter.cpp
-        src/${PROJECT_NAME}/utils.cpp
+    LIB_FILES
+    src/${PROJECT_NAME}/robot.cpp
+    include/${PROJECT_NAME}/diff_drive_controller.h
+    src/${PROJECT_NAME}/diff_drive_controller.cpp
+    include/${PROJECT_NAME}/odometry.h
+    src/${PROJECT_NAME}/odometry.cpp
+    include/${PROJECT_NAME}/speed_limiter.h
+    src/${PROJECT_NAME}/speed_limiter.cpp
+    src/${PROJECT_NAME}/utils.cpp
 
 )
 ## Specify additional locations of header files
 ## Your package locations should be listed before other locations
 include_directories(include)
 include_directories(
-        ${catkin_INCLUDE_DIRS}
+    ${catkin_INCLUDE_DIRS}
 )
 
 ## Declare a C++ library
 add_library(komodo2_controllers
-        ${LIB_FILES}
-        )
+    ${LIB_FILES}
+)
 
 ## Add cmake target dependencies of the library
 ## as an example, code may need to be generated before libraries
@@ -175,21 +175,21 @@ target_link_libraries(komodo2_controllers ${catkin_LIBRARIES})
 
 ## Mark executables and/or libraries for installation
 install(TARGETS komodo2_controllers
-        ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
-        LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
-        RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
-        )
+    ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+    LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+    RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+    )
 
 ## Mark cpp header files for installation
 install(DIRECTORY include/${PROJECT_NAME}/
-        DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION}
-        #   FILES_MATCHING PATTERN "*.h"
-        #   PATTERN ".svn" EXCLUDE
-        )
+    DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION}
+    #   FILES_MATCHING PATTERN "*.h"
+    #   PATTERN ".svn" EXCLUDE
+    )
 
 install(FILES ros_control_plugins.xml
-        DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
-        )
+    DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
+    )
 
 
 

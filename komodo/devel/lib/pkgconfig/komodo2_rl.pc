@@ -1,8 +1,0 @@
-prefix=/home/komodo/devel
-
-Name: komodo2_rl
-Description: Description of komodo2_rl
-Version: 0.0.0
-Cflags: 
-Libs: -L${prefix}/lib 
-Requires: 

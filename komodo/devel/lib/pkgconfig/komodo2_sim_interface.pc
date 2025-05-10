@@ -1,8 +1,0 @@
-prefix=/home/komodo/devel
-
-Name: komodo2_sim_interface
-Description: Description of komodo2_sim_interface
-Version: 2.5.13
-Cflags: -I/home/komodo/src/komodo2_sim_interface/include
-Libs: -L${prefix}/lib -lkomodo2_sim_interface
-Requires: roscpp std_msgs controller_manager control_toolbox pluginlib hardware_interface transmission_interface joint_limits_interface urdf angles

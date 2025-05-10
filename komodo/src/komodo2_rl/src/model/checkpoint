@@ -1,2 +1,0 @@
-model_checkpoint_path: "/home/komodo/src/komodo2_rl/src/model/model.ckpt"
-all_model_checkpoint_paths: "/home/komodo/src/komodo2_rl/src/model/model.ckpt"

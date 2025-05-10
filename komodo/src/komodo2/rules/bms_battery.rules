@@ -1,1 +1,0 @@
-SUBSYSTEMS=="usb", ATTRS{product}=="USB-RS485 Cable", SYMLINK+="komodo2/BMS", MODE="0666" 

@@ -1,8 +1,0 @@
-prefix=/home/komodo/devel
-
-Name: roboteq_control
-Description: Description of roboteq_control
-Version: 0.0.1
-Cflags: -I/home/komodo/devel/include -I/home/komodo/src/komodo2_utils/roboteq_control/include -I/usr/include
-Libs: -L${prefix}/lib -lroboteq_control /usr/lib/x86_64-linux-gnu/libboost_chrono.so /usr/lib/x86_64-linux-gnu/libboost_system.so /usr/lib/x86_64-linux-gnu/libboost_thread.so /usr/lib/x86_64-linux-gnu/libboost_date_time.so /usr/lib/x86_64-linux-gnu/libboost_atomic.so /usr/lib/x86_64-linux-gnu/libpthread.so
-Requires: diagnostic_updater std_msgs std_srvs dynamic_reconfigure hardware_interface roscpp sensor_msgs joint_limits_interface

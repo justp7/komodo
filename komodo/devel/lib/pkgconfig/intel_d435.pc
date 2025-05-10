@@ -1,8 +1,0 @@
-prefix=/home/komodo/devel
-
-Name: intel_d435
-Description: Description of intel_d435
-Version: 0.0.0
-Cflags: 
-Libs: -L${prefix}/lib 
-Requires: 

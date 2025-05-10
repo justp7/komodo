@@ -16,6 +16,7 @@ The primary goal of this fork is to provide an improved "out-of-the-box" working
     * To ensure smoother setup and "out-of-the-box" functionality, necessary components of the relevant arm control package have been integrated directly into this repository's folder structure. This should alleviate common dependency or configuration issues encountered with the original setup for real robot control.
 * **Enhanced Usability**: General improvements have been made to ensure the project is easier to clone, configure, and run without extensive troubleshooting.
 
+***
 
 This page provides instructions and source code for simulating wheel loader and a pile of particles in gazebo. This is complementary material to the paper
 > ***Wheel Loader Scooping Controller using Deep Reinforcement learning***

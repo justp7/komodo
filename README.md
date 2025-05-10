@@ -3,6 +3,20 @@
 
 ![komodo](https://i.imgur.com/ZCKDDNQ.png)
 
+## Fork Information
+
+This is a forked version of the **komodo** project, originally developed by osheraz. The original repository can be found at: [https://github.com/osheraz/komodo](https://github.com/osheraz/komodo).
+
+The primary goal of this fork is to provide an improved "out-of-the-box" working experience by addressing some known issues and streamlining the setup, particularly for real robot operation.
+
+### Changelog / Modifications in this Fork
+
+* **`arm2` / Arm Control Error Resolution & Integration**:
+    * Addressed and fixed errors related to `arm2` (likely associated with the `arm_control` package used for real robot interaction).
+    * To ensure smoother setup and "out-of-the-box" functionality, necessary components of the relevant arm control package have been integrated directly into this repository's folder structure. This should alleviate common dependency or configuration issues encountered with the original setup for real robot control.
+* **Enhanced Usability**: General improvements have been made to ensure the project is easier to clone, configure, and run without extensive troubleshooting.
+
+
 This page provides instructions and source code for simulating wheel loader and a pile of particles in gazebo. This is complementary material to the paper
 > ***Wheel Loader Scooping Controller using Deep Reinforcement learning***
 submitted to the *IEEE Access (2020)*.
